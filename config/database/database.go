@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -20,6 +21,9 @@ func ConectarBanco() (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+	log.Println("CONEXÃO COM O BANCO DE DADIS REALIZADA COM SUCESSO")
+
+	DB = db
 
 	return db, nil
 }
