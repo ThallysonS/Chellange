@@ -20,7 +20,7 @@ func cadastrarprofessor(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"menssagem": "Professor cadastrado com sucesso"})
+	c.JSON(http.StatusCreated, gin.H{"mensagem": "Professor cadastrado com sucesso"})
 }
 
 func cadastraraluno(c *gin.Context) {

@@ -2,6 +2,7 @@ package main
 
 import (
 	"challenge/config/database"
+	"challenge/interfaces/crm"
 	"challenge/interfaces/entries"
 	"log"
 
@@ -19,6 +20,7 @@ func main() {
 
 	r := gin.Default()
 	entries.Rotas(r.Group("/api"))
+	crm.Rotas(r.Group("/api"))
 	r.Run(":8080")
 
 }

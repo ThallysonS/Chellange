@@ -3,11 +3,11 @@ package order
 import "time"
 
 type Cadeira struct {
-	Nomecadeira  *string    `json:"nomecadeira"`
-	Slug         *string    `json:"slug"`
-	DataInicio   *time.Time `json:"datainicio"`
-	DataFinal    *time.Time `json:"datafinal"`
-	CargaHoraria *string    `json:"cargahoraria"`
-	IDCadeira    *int       `json:"idcadeira"`
-	IDProf       *int64     `json:"idprof"`
+	ID           int
+	Nome         string
+	Slug         string
+	DataInicio   time.Time
+	DataFim      time.Time
+	CargaHoraria int
+	IDProf       int
 }

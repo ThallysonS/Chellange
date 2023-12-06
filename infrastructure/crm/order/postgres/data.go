@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"challenge/domain/crm/order"
 	"challenge/domain/entries/user"
 	"database/sql"
 	"log"
@@ -25,5 +26,15 @@ func CadastrarAlunoNoBanco(tx *sql.Tx, a user.Aluno) error {
 		return err
 	}
 
+	return nil
+}
+
+func CadastrarCadeiraNoBanco(tx *sql.Tx, c order.Cadeira) error {
+	_, err := tx.Exec("INSERT INTO cadeira (nome, slug, data_inicio, data_fim, carga_horaria, idprof) VALUES ($1, $2, $3, $4, $5, $6)",
+		c.Nome, c.Slug, c.DataInicio, c.DataFim, c.CargaHoraria, c.IDProf)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 	return nil
 }

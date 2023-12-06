@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 func Router(r *gin.RouterGroup) {
 
 	//!aluno lista as cadeiras disponíveis
-	r.GET("/cadastrarcadeira", cadastrarcadeira)
+	r.POST("/cadastrarcadeira", cadastrarcadeira)
 	//!professor lista as solicitações de alunos sobre cadeiras disponíveis
 	//r.GET("/listarsolicitacoes", listarsolicitacoes)
 	//!o sistema lista as cadeiras e seus alunos matriculados
