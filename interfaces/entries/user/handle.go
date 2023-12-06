@@ -22,3 +22,19 @@ func cadastrarprofessor(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"menssagem": "Professor cadastrado com sucesso"})
 }
+
+func cadastraraluno(c *gin.Context) {
+	var aluno user.Aluno
+
+	if err := c.BindJSON(&aluno); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := user.CadastrarAluno(aluno); err != nil {
+		c.JSON(500, gin.H{"error": "erro ao cadastrar o aluno no banco de dados"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"menssagem": "aluno cadastrado com sucesso"})
+}

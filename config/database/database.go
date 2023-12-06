@@ -11,7 +11,7 @@ import (
 var DB *sql.DB
 
 func ConectarBanco() (*sql.DB, error) {
-	db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=4002 dbname=professor sslmode=disable")
+	db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=4002 dbname=postgres sslmode=disable")
 
 	if err != nil {
 		return nil, err
@@ -21,7 +21,7 @@ func ConectarBanco() (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Println("CONEXÃO COM O BANCO DE DADIS REALIZADA COM SUCESSO")
+	log.Println("CONEXÃO COM O BANCO DE DADOS REALIZADA COM SUCESSO")
 
 	DB = db
 
@@ -54,11 +54,6 @@ func NovaTX() (*sql.Tx, error) {
 		fmt.Println("erro")
 		return nil, err
 	}
-
-	defer func() {
-		cancel()
-		<-time.After(100 * time.Millisecond)
-	}()
 
 	return tx, nil
 }

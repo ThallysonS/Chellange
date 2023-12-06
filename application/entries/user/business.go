@@ -14,6 +14,7 @@ func CadastrarProfessor(professor Professor) error {
 		return err
 	}
 	defer tx.Rollback()
+
 	err = postgres.CadastrarProfNoBanco(tx, (user.Professor(professor)))
 	if err != nil {
 		return err
@@ -28,18 +29,23 @@ func CadastrarProfessor(professor Professor) error {
 	return nil
 }
 
-func CadastrarCadeira() {
+func CadastrarAluno(aluno Aluno) error {
+	tx, err := database.NovaTX()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
 
-}
+	err = postgres.CadastrarAlunoNoBanco(tx, (user.Aluno(aluno)))
+	if err != nil {
+		return err
+	}
 
-func CadastrarAluno() {
+	fmt.Println("aluno cadastrado com sucesso")
 
-}
+	if err := tx.Commit(); err != nil {
+		return err
+	}
 
-func ListarCadeiras() {
-
-}
-
-func ListarAlunosCadeiras() {
-
+	return nil
 }

@@ -2,7 +2,7 @@ package order
 
 import "github.com/gin-gonic/gin"
 
-func ListarCadeiras(c *gin.Context) (interface{}, error) {
+func CadastrarCadeira(c *gin.Context) (interface{}, error) {
 	var cadeira Cadeira
 
 	if err := c.ShouldBindJSON(&cadeira); err != nil {
