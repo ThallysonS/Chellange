@@ -11,7 +11,7 @@ import (
 var DB *sql.DB
 
 func ConectarBanco() (*sql.DB, error) {
-	db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=4002 dbname=postgres sslmode=disable")
+	db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=4002 dbname=Sistema sslmode=disable")
 
 	if err != nil {
 		return nil, err

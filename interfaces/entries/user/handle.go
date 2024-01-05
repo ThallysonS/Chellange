@@ -2,10 +2,15 @@ package user
 
 import (
 	"challenge/application/entries/user"
+	"challenge/config"
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
+
+// função que cadastra o professor no banco de dados e envia email com a senha cadastrada (token)
 
 func cadastrarprofessor(c *gin.Context) {
 	var professor user.Professor
@@ -20,8 +25,26 @@ func cadastrarprofessor(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"mensagem": "Professor cadastrado com sucesso"})
+	//Enviando email de confirmação
+
+	err := config.CarregarVariaveisAmbiente()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	user.Configurar(config.SmtpServidor, config.SmtpPorta, config.SmtpUsuario, config.SmtpSenha)
+
+	mensagem := fmt.Sprintf("Cadastro realizado com sucesso! SENHA do professor: %v", *professor.Senha)
+	if err := user.EnviarEmailConfirmacao(*professor.Email, mensagem); err != nil {
+		c.JSON(500, gin.H{"error": "Erro ao enviar e-mail de confirmação"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"Mensagem": "Professor cadastrado"})
+
 }
+
+// função que cadastra o aluno no banco de dados
 
 func cadastraraluno(c *gin.Context) {
 	var aluno user.Aluno

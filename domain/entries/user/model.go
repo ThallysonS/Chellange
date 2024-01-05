@@ -6,6 +6,7 @@ type Professor struct {
 	Telefone *string `json:"telefone,omitempty"`
 	Email    *string `json:"email,omitempty"`
 	CPF      *string `json:"cpf,omitempty"`
+	Senha    *string `json:"senha,omitempty"`
 }
 
 type Aluno struct {

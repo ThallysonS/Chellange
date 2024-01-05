@@ -8,8 +8,8 @@ import (
 )
 
 func CadastrarProfNoBanco(tx *sql.Tx, p user.Professor) error {
-	_, err := tx.Exec("INSERT INTO professor (nome, telefone, email, cpf) VALUES ($1, $2, $3, $4)",
-		p.Nome, p.Telefone, p.Email, p.CPF)
+	_, err := tx.Exec("INSERT INTO professor (nome, telefone, email, cpf, senha) VALUES ($1, $2, $3, $4, $5)",
+		p.Nome, p.Telefone, p.Email, p.CPF, p.Senha)
 	if err != nil {
 		log.Println(err)
 		return err

@@ -1,6 +1,8 @@
 package order
 
-import "time"
+import (
+	"time"
+)
 
 type Cadeira struct {
 	ID           int
